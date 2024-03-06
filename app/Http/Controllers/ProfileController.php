@@ -50,6 +50,12 @@ class ProfileController extends Controller
 
         Auth::logout();
 
+        // delete todolist user 
+        $todolists = $user->todolists;
+        foreach ($todolists as $todolist) {
+            $todolist->delete();
+        }
+
         $user->delete();
 
         $request->session()->invalidate();

@@ -29,12 +29,10 @@ class TodolistController extends Controller
         try {
             $user = auth()->user();
 
-            $request->validated(
-                [
+            $request->validate([
                     'title' => 'required|string',
                     'description' => 'required|string',
-                ]
-            );
+                ]);
 
             DB::beginTransaction();
             Todolist::create([
@@ -58,7 +56,7 @@ class TodolistController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $request->validated(
+            $request->validate(
                 [
                     'title' => 'required|string',
                     'description' => 'required|string',
